@@ -18,4 +18,14 @@ app.get('/users', async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+app.get('/account', async (req, res) => {
+  try {
+   const client = getClient();
+    const result = await client.query('SELECT * from account a inner join customer c on a.customer_id=c.customer_id', );
+    res.json(result.rows);
+    await client.end();
+  } catch (error:any) {
+    res.status(500).json({ error: error.message });
+  }
+});
 export default app;
