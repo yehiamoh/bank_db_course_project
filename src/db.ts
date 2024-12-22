@@ -7,15 +7,11 @@ dotenv.config();
 const connectionString = process.env.DATABASE_URL;
 console.log(connectionString);
 
-let client: Client | null = null;
 const getClient = () => {
-  if (!client) {
-    client = new Client({
-      connectionString: connectionString,
-      
-    });
-    client.connect();
-  }
+  const client = new Client({
+    connectionString: process.env.DATABASE_URL,
+  });
+  client.connect();
   return client;
 };
 
