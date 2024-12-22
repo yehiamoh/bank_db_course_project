@@ -21,7 +21,7 @@ app.get('/users', async (req, res) => {
 app.get('/account', async (req, res) => {
   try {
    const client = getClient();
-    const result = await client.query('SELECT * from account a inner join customer c on a.customer_id=c.customer_id', );
+    const result = await client.query('SELECT * from account a inner join customer c on a.customer_id=c.customer_id where c.cutomer_id=1', );
     res.json(result.rows);
     await client.end();
   } catch (error:any) {
