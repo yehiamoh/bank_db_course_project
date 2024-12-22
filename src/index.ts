@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
+import getClient from './db';
 
-import client from './db'; './database';
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -10,6 +10,7 @@ app.get('/', (req, res) => {
 });
 app.get('/users', async (req, res) => {
   try {
+   const client = getClient();
     const result = await client.query('SELECT * FROM customer');
     res.json(result.rows);
   } catch (error:any) {

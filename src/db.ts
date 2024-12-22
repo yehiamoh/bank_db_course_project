@@ -1,7 +1,15 @@
 import { Client } from "pg";
 
-const client = new Client({
-   connectionString: process.env.DATABASE_URL,
-});
-client.connect();
-export default client;
+let client: Client | null = null;
+
+const getClient = () => {
+  if (!client) {
+    client = new Client({
+      connectionString: process.env.DATABASE_URL,
+    });
+    client.connect();
+  }
+  return client;
+};
+
+export default getClient;
