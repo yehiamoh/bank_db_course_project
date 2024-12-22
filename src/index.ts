@@ -13,6 +13,7 @@ app.get('/users', async (req, res) => {
    const client = getClient();
     const result = await client.query('SELECT * FROM customer');
     res.json(result.rows);
+    await client.end();
   } catch (error:any) {
     res.status(500).json({ error: error.message });
   }
