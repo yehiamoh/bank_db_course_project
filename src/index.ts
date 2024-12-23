@@ -46,7 +46,7 @@ app.get('/loans', async (req, res) => {
 });
 
 const getCustomerById:RequestHandler = async (req:Request, res:Response) => {
-  const { id } = req.params;
+  const id= req.params.id;
   try {
     const client = getClient();
     const result = await client.query('SELECT * FROM customer WHERE customer_id = $1', [id]);
@@ -80,7 +80,7 @@ app.get('/transactions', async (req, res) => {
 
 
 const getTransactionByAccountId:RequestHandler =async (req:Request, res:Response) => {
-  const { account_id } = req.params;
+  const account_id = req.params.id;
   try {
     const client = getClient();
     const result = await client.query('SELECT * FROM transaction WHERE account_id = $1', [account_id]);
